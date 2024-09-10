@@ -9,6 +9,7 @@ let socks5Address = '';
 
 let addresses = [
 	//当sub为空时启用本地优选域名/优选IP，若不带端口号 TLS默认端口为443，#号后为备注别名
+	/*
 	'Join.my.Telegram.channel.CMLiussss.to.unlock.more.premium.nodes.cf.090227.xyz#加入我的频道t.me/CMLiussss解锁更多优选节点',
 	'visa.cn:443',
 	'www.visa.com:8443',
@@ -22,8 +23,9 @@ let addresses = [
 	'www.wto.org:8443',
 	'chatgpt.com:2087',
 	'icook.hk',
-	//'104.17.0.0#IPv4',
+	'104.17.0.0#IPv4',
 	'[2606:4700::]#IPv6'
+	*/
 ];
 
 let sub = ''; 
@@ -41,14 +43,14 @@ let BotToken ='';
 let ChatID =''; 
 let proxyhosts = [];//本地代理域名池
 let proxyhostsURL = 'https://raw.githubusercontent.com/cmliu/CFcdnVmess2sub/main/proxyhosts';//在线代理域名池URL
+let go2Socks5s = [
+	'*ttvnw.net',
+];
 
 let fakeUserID ;
 let fakeHostName ;
 let proxyIPs ;
 let socks5s;
-let go2Socks5s = [
-	'*ttvnw.net',
-];
 let sha224Password ;
 const expire = 4102329600;//2099-12-31
 const regex = /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[.*\]):?(\d+)?#?(.*)?$/;
@@ -138,6 +140,25 @@ export default {
 					return new Response(`${fakeConfig}`, { status: 200 });
 				case `/${password}`:
 					await sendMessage(`#获取订阅 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${UA}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
+					if ((!sub || sub == '') && (addresses.length + addressesapi.length + addressesnotls.length + addressesnotlsapi.length + addressescsv.length) == 0){
+						addresses = [
+							'Join.my.Telegram.channel.CMLiussss.to.unlock.more.premium.nodes.cf.090227.xyz#加入我的频道t.me/CMLiussss解锁更多优选节点',
+							'visa.cn:443',
+							'www.visa.com:8443',
+							'cis.visa.com:2053',
+							'africa.visa.com:2083',
+							'www.visa.com.sg:2087',
+							'www.visaeurope.at:2096',
+							'www.visa.com.mt:8443',
+							'qa.visamiddleeast.com',
+							'time.is',
+							'www.wto.org:8443',
+							'chatgpt.com:2087',
+							'icook.hk',
+							//'104.17.0.0#IPv4',
+							'[2606:4700::]#IPv6'
+						];
+					}
 					const trojanConfig = await getTrojanConfig(password, request.headers.get('Host'), sub, UA, RproxyIP, url);
 					const now = Date.now();
 					//const timestamp = Math.floor(now / 1000);
