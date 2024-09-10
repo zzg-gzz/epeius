@@ -140,7 +140,7 @@ export default {
 					return new Response(`${fakeConfig}`, { status: 200 });
 				case `/${password}`:
 					await sendMessage(`#获取订阅 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${UA}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
-					if ((!sub || sub == '') && (addresses.length + addressesapi.length + addressesnotls.length + addressesnotlsapi.length + addressescsv.length) == 0){
+					if ((!sub || sub == '') && (addresses.length + addressesapi.length + addressescsv.length) == 0){
 						addresses = [
 							'Join.my.Telegram.channel.CMLiussss.to.unlock.more.premium.nodes.cf.090227.xyz#加入我的频道t.me/CMLiussss解锁更多优选节点',
 							'visa.cn:443',
