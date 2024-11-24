@@ -58,15 +58,15 @@ let sha224Password ;
 const expire = 4102329600;//2099-12-31
 const regex = /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[.*\]):?(\d+)?#?(.*)?$/;
 
+let parsedSocks5Address = {}; 
+let enableSocks = false;
+let httpsPorts = ["2053","2083","2087","2096","8443"];
+/*Obfuscate-cmliu*/
 /*
 if (!isValidSHA224(sha224Password)) {
     throw new Error('sha224Password is not valid');
 }
 */
-
-let parsedSocks5Address = {}; 
-let enableSocks = false;
-let httpsPorts = ["2053","2083","2087","2096","8443"];
 export default {
 	async fetch(request, env, ctx) {
 		try {
