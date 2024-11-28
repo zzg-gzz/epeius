@@ -32,20 +32,22 @@ jobs:
             line_number=$(awk '/Obfuscate-cmliu/ {print NR; exit}' _worker.src.js)
             echo "Obfuscate 分段处理行号为: $line_number"
             head -n $line_number _worker.src.js > src.js
-            tail -n +$((line_number + 1)) _worker.src.js > obf.js
+            tail -n +$((line_number + 1)) _worker.src.js > index.js
           else
             echo "未检测到 Obfuscate 执行全文件混淆"
-            cp _worker.src.js obf.js
+            cp _worker.src.js index.js
           fi
 
       - name: Obfuscate code
         run: |
-          javascript-obfuscator obf.js --output _worker.js \
+          javascript-obfuscator index.js --output _worker.js \
           --compact true \
           --control-flow-flattening true \
           --control-flow-flattening-threshold 1 \
           --dead-code-injection true \
           --dead-code-injection-threshold 1 \
+          --identifier-names-generator hexadecimal \
+          --rename-globals true \
           --string-array true \
           --string-array-encoding 'rc4' \
           --string-array-threshold 1 \
