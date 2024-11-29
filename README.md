@@ -33,6 +33,10 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 - 另外，您也可以选择自行部署 [WorkerVless2sub 订阅生成服务](https://github.com/cmliu/WorkerVless2sub)，这样既可以利用订阅生成器的便利。
 
 ## Workers 部署方法 [视频教程](https://www.youtube.com/watch?v=MBlAqYajVSY&t=169s)
+
+<details>
+<summary><code><strong>「 Workers 部署文字教程 」</strong></code></summary>
+
 1. 部署 CF Worker：
    - 在 CF Worker 控制台中创建一个新的 Worker。
    - 将 [worker.js](https://github.com/cmliu/epeius/blob/main/_worker.js) 的内容粘贴到 Worker 编辑器中。
@@ -56,21 +60,28 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 
 3. 访问订阅内容：
    - 访问 `https://[YOUR-WORKERS-URL]/[PASSWORD]` 即可获取订阅内容。
-   - 例如 `https://vless.google.workers.dev/auto` 就是你的通用自适应订阅地址。
-   - 例如 `https://vless.google.workers.dev/auto?sub` Base64订阅格式，适用PassWall,SSR+等。
-   - 例如 `https://vless.google.workers.dev/auto?clash` Clash订阅格式，适用OpenClash等。
-   - 例如 `https://vless.google.workers.dev/auto?sb` singbox订阅格式，适用singbox等。
+   - 例如 `https://trojan.google.workers.dev/auto` 就是你的通用自适应订阅地址。
+   - 例如 `https://trojan.google.workers.dev/auto?sub` Base64订阅格式，适用PassWall,SSR+等。
+   - 例如 `https://trojan.google.workers.dev/auto?clash` Clash订阅格式，适用OpenClash等。
+   - 例如 `https://trojan.google.workers.dev/auto?sb` singbox订阅格式，适用singbox等。
 
 4. 给 workers绑定 自定义域： 
    - 在 workers控制台的 `触发器`选项卡，下方点击 `添加自定义域`。
-   - 填入你已转入 CF 域名解析服务的次级域名，例如:`vless.google.com`后 点击`添加自定义域`，等待证书生效即可。
+   - 填入你已转入 CF 域名解析服务的次级域名，例如:`trojan.google.com`后 点击`添加自定义域`，等待证书生效即可。
+
+</details>
 
 ## Pages 上传 部署方法
+
+<details>
+<summary><code><strong>「 Pages 上传文件部署文字教程 」</strong></code></summary>
+
 1. 部署 CF Pages：
    - 下载 [main.zip](https://github.com/cmliu/epeius/archive/refs/heads/main.zip) 文件，并点上 Star !!!
    - 在 CF Pages 控制台中选择 `上传资产`后，为你的项目取名后点击 `创建项目`，然后上传你下载好的 [main.zip](https://github.com/cmliu/epeius/archive/refs/heads/main.zip) 文件后点击 `部署站点`。
    - 部署完成后点击 `继续处理站点` 后，选择 `设置` > `环境变量` > **制作**为生产环境定义变量 > `添加变量`。
      变量名称填写**PASSWORD**，值则为你的密码，后点击 `保存`即可。
+   - **重中之重！ `设置` > `运行时` > `兼容性标志` > `nodejs_compat`**，后点击 `保存`即可。
    - 返回 `部署` 选项卡，在右下角点击 `创建新部署` 后，重新上传 [main.zip](https://github.com/cmliu/epeius/archive/refs/heads/main.zip) 文件后点击 `保存并部署` 即可。
 
 2. 添加优选线路:
@@ -101,12 +112,19 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
      您分配到的域名是 `fuck.cloudns.biz`，则添加自定义域填入 `lizi.fuck.cloudns.biz`即可；
    - 按照 CF 的要求将返回你的域名DNS服务商，添加 该自定义域 `lizi`的 CNAME记录 `epeius.pages.dev` 后，点击 `激活域`即可。
 
+</details>
+
 ## Pages GitHub 部署方法 [视频教程](https://www.youtube.com/watch?v=0Cd8uTNJj1Q&t=96s)
+
+<details>
+<summary><code><strong>「 Pages GitHub 部署文字教程 」</strong></code></summary>
+
 1. 部署 CF Pages：
    - 在 Github 上先 Fork 本项目，并点上 Star !!!
    - 在 CF Pages 控制台中选择 `连接到 Git`后，选中 `epeius`项目后点击 `开始设置`。
    - 在 `设置构建和部署`页面下方，选择 `环境变量（高级）`后并 `添加变量`，
      变量名称填写**PASSWORD**，值则为你的密码，后点击 `保存并部署`即可。
+   - **重中之重！ `设置` > `运行时` > `兼容性标志` > `nodejs_compat`**，后点击 `保存`即可。
 
 2. 添加优选线路:
  - 添加变量 `ADD` 本地静态的优选线路，若不带端口号 TLS默认端口为443，#号后为备注别名，例如：
@@ -136,6 +154,8 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
      您分配到的域名是 `fuck.cloudns.biz`，则添加自定义域填入 `lizi.fuck.cloudns.biz`即可；
    - 按照 CF 的要求将返回你的域名DNS服务商，添加 该自定义域 `lizi`的 CNAME记录 `epeius.pages.dev` 后，点击 `激活域`即可。
    
+</details>
+
 ## 变量说明
 | 变量名 | 示例 | 备注 |
 |--------|---------|-----|
@@ -156,15 +176,11 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 | RPROXYIP | `false` | 设为 true 即可强制获取订阅器分配的ProxyIP(需订阅器支持)|
 | URL302 | `https://t.me/CMLiussss` | 主页302跳转(支持多url, url之间使用`,`或`换行`作间隔, 小白别用) |
 | URL | `https://blog.cmliussss.com` | 主页反代伪装(支持多url, url之间使用`,`或`换行`作间隔, 乱设容易触发反诈) |
-| CFEMAIL | `admin@gmail.com` | CF账户邮箱(与`CFKEY`都填上后, 订阅信息将显示请求使用量, 小白别用) | 
-| CFKEY | `c6a944b5c956b6c18c2352880952bced8b85e` | CF账户Global API Key(与`CFEMAIL`都填上后, 订阅信息将显示请求使用量, 小白别用) |
 | CFPORTS | `2053`,`2096`,`8443` | CF账户标准端口列表 |
 
 **注意: 填入`SOCKS5`后将不再启用`PROXYIP`！请二选一使用！！！**
 
 **注意: 填入`SUB`后将不再启用`ADD*`类变量生成的订阅内容！请二选一使用！！！**
-
-**注意: 同时填入`CFEMAIL`和`CFKEY`才会启用显示请求使用量，但是不推荐使用！没必要给一个Worker项目这么高的权限！后果自负！！！**
 
 ## 实用小技巧
 
