@@ -32,6 +32,7 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 - 通过提交虚假的节点配置给订阅服务，避免节点配置信息泄露。
 - 另外，您也可以选择自行部署 [WorkerVless2sub 订阅生成服务](https://github.com/cmliu/WorkerVless2sub)，这样既可以利用订阅生成器的便利。
 
+# 如何使用?
 ## Workers 部署方法 [视频教程](https://www.youtube.com/watch?v=MBlAqYajVSY&t=169s)
 
 <details>
@@ -81,7 +82,6 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
    - 在 CF Pages 控制台中选择 `上传资产`后，为你的项目取名后点击 `创建项目`，然后上传你下载好的 [main.zip](https://github.com/cmliu/epeius/archive/refs/heads/main.zip) 文件后点击 `部署站点`。
    - 部署完成后点击 `继续处理站点` 后，选择 `设置` > `环境变量` > **制作**为生产环境定义变量 > `添加变量`。
      变量名称填写**PASSWORD**，值则为你的密码，后点击 `保存`即可。
-   - **重中之重！ `设置` > `运行时` > `兼容性标志` > `nodejs_compat`**，后点击 `保存`即可。
    - 返回 `部署` 选项卡，在右下角点击 `创建新部署` 后，重新上传 [main.zip](https://github.com/cmliu/epeius/archive/refs/heads/main.zip) 文件后点击 `保存并部署` 即可。
 
 2. 添加优选线路:
@@ -124,7 +124,6 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
    - 在 CF Pages 控制台中选择 `连接到 Git`后，选中 `epeius`项目后点击 `开始设置`。
    - 在 `设置构建和部署`页面下方，选择 `环境变量（高级）`后并 `添加变量`，
      变量名称填写**PASSWORD**，值则为你的密码，后点击 `保存并部署`即可。
-   - **重中之重！ `设置` > `运行时` > `兼容性标志` > `nodejs_compat`**，后点击 `保存`即可。
 
 2. 添加优选线路:
  - 添加变量 `ADD` 本地静态的优选线路，若不带端口号 TLS默认端口为443，#号后为备注别名，例如：
@@ -163,36 +162,66 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 | PROXYIP | `proxyip.fxxk.dedyn.io:443` | 备选作为访问CFCDN站点的代理节点(支持多ProxyIP, ProxyIP之间使用`,`或`换行`作间隔) |
 | SOCKS5  | `user:password@127.0.0.1:1080` | 优先作为访问CFCDN站点的SOCKS5代理(支持多socks5, socks5之间使用`,`或`换行`作间隔) |
 | GO2SOCKS5  | `blog.cmliussss.com`,`*.ip111.cn`,`*google.com` | 设置`SOCKS5`变量之后，可设置强制使用socks5访问名单(`*`可作为通配符，`换行`作多元素间隔) |
-| ADD | `www.csgo.com:2087,icook.hk` | 本地优选域名/优选IP(支持多元素之间`,`或`换行`作间隔) |
+| ADD | `www.csgo.com:2087`,`icook.hk` | 本地优选域名/优选IP(支持多元素之间`,`或`换行`作间隔) |
 | ADDAPI | [https://raw.github.../addressesapi.txt](https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt) | 不解释, 懂得都懂 |
 | ADDCSV | [https://raw.github.../addressescsv.csv](https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv) | 不解释, 懂得都懂 |
 | DLS | `8` | `ADDCSV`测速结果满足速度下限 | 
 | TGTOKEN | `6894123456:XXXXXXXXXX0qExVsBPUhHDAbXXXXXqWXgBA` | 发送TG通知的机器人token | 
 | TGID | `6946912345` | 接收TG通知的账户数字ID | 
-| SUB | `Trojan.fxxk.dedyn.io` | 优选订阅生成器地址(使用订阅器将放弃`ADD`内的本地优选订阅内容) |
+| SUB | `Trojan.fxxk.dedyn.io` | 优选订阅生成器域名(使用订阅器将放弃`ADD`内的本地优选订阅内容) |
 | SUBAPI | `SUBAPI.fxxk.dedyn.io` | clash、singbox等 订阅转换后端 |
 | SUBCONFIG | [https://raw.github.../ACL4SSR_Online_Mini.ini](https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini) | clash、singbox等 订阅转换配置文件 |
+| SUBEMOJI | `false` | 订阅转换是否启用Emoji(默认`true`) |
 | SUBNAME | `epeius` | 订阅名称 | 
 | RPROXYIP | `false` | 设为 true 即可强制获取订阅器分配的ProxyIP(需订阅器支持)|
 | URL302 | `https://t.me/CMLiussss` | 主页302跳转(支持多url, url之间使用`,`或`换行`作间隔, 小白别用) |
 | URL | `https://blog.cmliussss.com` | 主页反代伪装(支持多url, url之间使用`,`或`换行`作间隔, 乱设容易触发反诈) |
 | CFPORTS | `2053`,`2096`,`8443` | CF账户标准端口列表 |
 
-**注意: 填入`SOCKS5`后将不再启用`PROXYIP`！请二选一使用！！！**
+# 注意事项
 
-**注意: 填入`SUB`后将不再启用`ADD*`类变量生成的订阅内容！请二选一使用！！！**
+### **关于`SOCKS5`与`PROXYIP`：**
+- 填入`SOCKS5`后，将停用`PROXYIP`。请确保**二者选其一使用**！
 
-## 实用小技巧
+### **关于`SUB`与`ADD*`变量：**
+- 填入`SUB`后，将停用由`ADD*`类变量生成的订阅内容。请确保**二者选其一使用**！
 
-**该项目部署的订阅可通过添加`sub`键值快速更换优选订阅生成器！** 
-> 例如 `https://epeius.pages.dev/auto` 是你的通用自适应订阅地址
-- 快速更换订阅器为`Trojan.fxxk.dedyn.io`的订阅地址
+### **当`SUB`和`ADD*`均为空时：**
+- 脚本将自动生成基于CF随机IP的线路，每次更新订阅时会生成不同的随机IP，确保您的订阅不会失联！
 
+# 实用技巧
+本项目提供灵活的订阅配置方案，支持通过URL参数快速自定义订阅内容。
+- 示例订阅地址： `https://epeius.pages.dev/auto` 
+
+1. 更换**订阅生成器**的订阅地址
+
+   快速切换订阅生成器至 `Trojan.fxxk.dedyn.io`：
    ```url
    https://epeius.pages.dev/auto?sub=Trojan.fxxk.dedyn.io
    ```
 
-**该项目部署的节点可通过节点PATH(路径)的方式，使用指定的`PROXYIP`或`SOCKS5`！！！**
+2. 更换**PROXYIP**的订阅地址
+
+   快速更换PROXYIP为 `proxyip.fxxk.dedyn.io`：
+   ```url
+   https://epeius.pages.dev/auto?proxyip=proxyip.fxxk.dedyn.io
+   ```
+
+3. 更换**SOCKS5**的订阅地址
+
+   快速设置SOCKS5代理为 `user:password@127.0.0.1:1080`：
+   ```url
+   https://epeius.pages.dev/auto?socks5=user:password@127.0.0.1:1080
+   ```
+
+- 通过提交多个参数快速修改的订阅地址
+
+   例如同时修改**订阅生成器**和**PROXYIP**：
+   ```url
+   https://epeius.pages.dev/auto?sub=Trojan.fxxk.dedyn.io&proxyip=proxyip.fxxk.dedyn.io
+   ```
+
+4. 该项目部署的节点可通过节点PATH(路径)的方式，使用指定的`PROXYIP`或`SOCKS5`！！！**
 
 - 指定 `PROXYIP` 案例
    ```url
@@ -209,7 +238,7 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
    /socks5://user:password@127.0.0.1:1080
    ```
 
-**当你的`ADDAPI`可作为`PROXYIP`时，可在`ADDAPI`变量末位添加`?proxyip=true`，即可在生成节点时使用优选IP自身作为`PROXYIP`**
+5. **当你的`ADDAPI`可作为`PROXYIP`时，可在`ADDAPI`变量末位添加`?proxyip=true`，即可在生成节点时使用优选IP自身作为`PROXYIP`**
 - 指定 `ADDAPI` 作为 `PROXYIP` 案例
    ```url
    https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt?proxyip=true
@@ -221,7 +250,7 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
 ## 已适配客户端
 ### Windows
    - [v2rayN](https://github.com/2dust/v2rayN)
-   - clash.meta（[FlClash](https://github.com/chen08209/FlClash)，[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)，[Clash Nyanpasu](https://github.com/keiko233/clash-nyanpasu)）
+   - clash.meta（[FlClash](https://github.com/chen08209/FlClash)，[mihomo-party](https://github.com/mihomo-party-org/mihomo-party)，[clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)，[Clash Nyanpasu](https://github.com/keiko233/clash-nyanpasu)）
 ### IOS
    - Surge，小火箭
    - sing-box（[SFI](https://sing-box.sagernet.org/zh/clients/apple/)）
@@ -229,7 +258,7 @@ Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)，**感谢[Alice Networ
    - clash.meta（[ClashMetaForAndroid](https://github.com/MetaCubeX/ClashMetaForAndroid)，[FlClash](https://github.com/chen08209/FlClash)）
    - sing-box（[SFA](https://github.com/SagerNet/sing-box)）
 ### MacOS
-   - clash.meta（[FlClash](https://github.com/chen08209/FlClash)）
+   - clash.meta（[FlClash](https://github.com/chen08209/FlClash)，[mihomo-party](https://github.com/mihomo-party-org/mihomo-party)）
 
 # 感谢
 [ca110us](https://github.com/ca110us/epeius)、[xream](https://github.com/xream)、[3Kmfi6HP](https://github.com/6Kmfi6HP/EDtunnel)、[zizifn](https://github.com/zizifn/edgetunnel)、[emn178](https://github.com/emn178/js-sha256)、[ACL4SSR](https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config)、[SHIJS1999](https://github.com/SHIJS1999/cloudflare-worker-vless-ip)、<a href="https://url.cmliussss.com/alice"><img src="https://alicenetworks.net/templates/lagom2/assets/img/logo/logo_big.194980063.png" width="150" height="75" alt="Alice Networks LTD"/></a>、
